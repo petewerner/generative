@@ -1,57 +1,8 @@
 #include "testApp.h"
 
 /*
- * TODO:
- * 
- * [ longer term/misc ideas ]
- * - can we set the vel as a vertex attribute rather than a tex might be faster
- *
- * [ shorter term ]:
- * - need to seperate the width from the height being the same
- * - a few places assume with res of the attractor is 700.
- * - look at the fastest way to draw a bunch of particles, should we put them in a vbo and update that
- *      or is using textures like we do the best way?
- *
- * [ done ]
- * - update old_dja to do ofMap the density val so it lies between 0.1 and 1.0
- * - work out what is causing that pulsing effect, its pos.z, all parts had the same val
- * - calculate the velocity map somewhere, it is fixed per attractor density so does nto need
- *  to be redone every update(), only when attractor is redrawn
- * - then hook the position fbo to update based on the vel map
- * - see if we can make the vertex vbo static instead of sending it every update??
- * - the parts get "stuck" or bunch up. would be cool if we could work out of part A has the same loc as part
- *      B and if so move part B to a new random loc. <- unsolved but using random vels works nicely so moot.
- * - or just add some lifetime val to the part2
- * - update old_dja to do the attractor calcs via a shader, should export a greyscale texture
- * - define a subset of the attractor input space, and use a zoomed in portion
- *  that way there are less points to caclulate, and it will always have interesting stuff going on
- * - we do lots of iterations to build the attractor, mainly so it looks bright enough.
- *      should stop this so it is less computationally intensive.
- * - also a gaussian blur shader 
- * - try do a log image, see what the max is when x = y = 0.0, seems to be most dense
- *      even if we hardcode the max, given that its logs maybe its ok?
- * - should take a look @ colour as well.
- * - see if curl/grad can help, how?
- * - add contrast and brightness shaders. we can possibly get away with less iterations for the attractor
- * - look at alternate filters for the dja attractor. good practise for the post i plan todo anyway.
- * - one old_dja is using a shader and its size + window width/height is all seperate, should play with the
- *      res of old_dja to see if we can get away with a smaller one and maybe averaging it or smth (bilinear!)
- *      we can get away w/this but its not really a material cause of slowness so meh.
- *
- * [ Version log ]
- * v2: moved attractor to its own class
- * v3: started on shaders
- * v4: cleanup, moved parts verts to vbo
- * v5: try different particle effect
- * v6: bring in new dja, cleanup.
- * v7: mess around with dja shader
- * v8: debug random vel
- * v9: bring in log scaled dja and curl shader, plus simple timer;
- * v10: color ***argh
- * v11: do color in dja, looking p nice!
- * v12: make sizes independent of one another
- * v13: misc size fixes, add letterboxing
- * v14: add in kinect
+ * hit 't' to see more info
+ * define USE_KINECT to use kinect 
  */
 
 float part_life = 900.0;
