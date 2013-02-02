@@ -46,7 +46,7 @@ int nBandsToGet = 256;
 float fftmax;
 
 int rad = 300; //sphere radius
-int res = 300; //sphere resolution
+int res = 250; //sphere resolution
 int fbo_res; //fbo resolution, will be sphere resolution
 float axis_loc; //which part of the axis to update
 
@@ -350,7 +350,7 @@ void testApp::buildSphereMesh(int radius, int res, ofMesh & sphereMesh) {
     float r = radius;
     
     sphereMesh.clear();
-    sphereMesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
+    //sphereMesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
     
     int i, j;
     float theta1 = 0.f;
