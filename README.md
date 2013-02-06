@@ -12,6 +12,10 @@ parallel_reduction is an example of using the GPU to process data stored in
 textures. This is a simple example that calculates the average value of the
 red channel.
 
+attractor_field is an interactive/kinect enabled dejong attractor:
+
+https://vimeo.com/57775915
+
 Any comments or suggestions, please let me know!
 
 

@@ -1,0 +1,3 @@
+ofxOpenCv
+ofxBlur
+ofxKinect
