@@ -685,7 +685,7 @@ testApp::setGUI()
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
     ambslider.push_back(gui->addSlider("AG", 0, 255.0, c.g, h, vertH));
     ambslider.push_back(gui->addSlider("AB", 0, 255.0, c.b, h, vertH));
-    ambslider.push_back(gui->addSlider("AA", 0, 255, c.a, h, vertH));
+//    ambslider.push_back(gui->addSlider("AA", 0, 255, c.a, h, vertH));
     gui->addSpacer(2, vertH+10);
     gui->addSlider("AW", 0, 255.0, c.r, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
