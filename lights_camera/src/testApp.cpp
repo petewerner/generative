@@ -37,8 +37,12 @@ bool doReset;
 
 vector<ofxUISlider *> ambslider;
 vector<ofxUISlider *> spotspecslider;
+vector<ofxUISlider *> spotDiffSlider;
 vector<ofxUISlider *> dirspecslider;
+vector<ofxUISlider *> dirDiffSlider;
 vector<ofxUISlider *> pointspecslider;
+vector<ofxUISlider *> pointDiffSlider;
+
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -268,6 +272,14 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         spot.setDiffuseColor(c);
+    } else if (name == "SDW") {
+        ofColor c = spot.getDiffuseColor();
+        ofxUISlider *slider = (ofxUISlider *)e.widget;
+        c.r = c.g = c.b = c.a = slider->getScaledValue();
+        spot.setDiffuseColor(c);
+        
+        for (int i = 0; i < spotDiffSlider.size(); i++)
+            spotDiffSlider.at(i)->setValue(slider->getScaledValue());
         
         /* spot specular colour */
     } else if (name == "SSR") {
@@ -337,7 +349,14 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         dir.setDiffuseColor(c);
+    } else if (name == "DDW") {
+        ofColor c = dir.getDiffuseColor();
+        ofxUISlider *slider = (ofxUISlider *)e.widget;
+        c.r = c.g = c.b = c.a = slider->getScaledValue();
+        dir.setDiffuseColor(c);
         
+        for (int i = 0; i < dirDiffSlider.size(); i++)
+            dirDiffSlider.at(i)->setValue(slider->getScaledValue());
         
     /* directional specular colour */
     } else if (name == "DSR") {
@@ -394,7 +413,14 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         point.setDiffuseColor(c);
+    } else if (name == "PDW") {
+        ofColor c = point.getDiffuseColor();
+        ofxUISlider *slider = (ofxUISlider *)e.widget;
+        c.r = c.g = c.b = c.a = slider->getScaledValue();
+        point.setDiffuseColor(c);
         
+        for (int i = 0; i < pointDiffSlider.size(); i++)
+            pointDiffSlider.at(i)->setValue(slider->getScaledValue());
         
         /* point specular colour */
     } else if (name == "PSR") {
@@ -584,6 +610,12 @@ testApp::setGUI()
         ofRemoveListener(gui->newGUIEvent, this, &testApp::guiEvent);
         ambslider.clear();
         spotspecslider.clear();
+        spotDiffSlider.clear();
+        dirspecslider.clear();
+        dirDiffSlider.clear();
+        pointspecslider.clear();
+        pointDiffSlider.clear();
+        
         delete gui;
     }
     
@@ -612,11 +644,12 @@ testApp::setGUI()
     
     gui->addWidgetDown(new ofxUILabel("Spot Diffuse/Specular Color", OFX_UI_FONT_SMALL));
     ofColor c = spot.getDiffuseColor();
-    gui->addSlider("SDR", 0, 255, c.r, h, vertH);
+    spotDiffSlider.push_back(gui->addSlider("SDR", 0, 255, c.r, h, vertH));
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    gui->addSlider("SDG", 0, 255, c.g, h, vertH);
-    gui->addSlider("SDB", 0, 255, c.b, h, vertH);
+    spotDiffSlider.push_back(gui->addSlider("SDG", 0, 255, c.g, h, vertH));
+    spotDiffSlider.push_back(gui->addSlider("SDB", 0, 255, c.b, h, vertH));
 //    gui->addSlider("SDA", 0, 255, c.a, h, vertH);
+    gui->addSlider("SDW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     
     gui->addSpacer(2, vertH+10);
 
@@ -625,7 +658,7 @@ testApp::setGUI()
     spotspecslider.push_back(gui->addSlider("SSG", 0, 255, c.g, h, vertH));
     spotspecslider.push_back(gui->addSlider("SSB", 0, 255, c.b, h, vertH));
 //    spotspecslider.push_back(gui->addSlider("SSA", 0, 255, c.a, h, vertH));
-    gui->addSpacer(2, vertH+10);
+//    gui->addSpacer(2, vertH+10);
     gui->addSlider("SSW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
@@ -638,22 +671,22 @@ testApp::setGUI()
     gui->addSlider("DIR_XORI", -180, 180, dir.getOrientationEuler().x, w, h);
     gui->addSlider("DIR_YORI", -180, 180, dir.getOrientationEuler().y, w, h);
     gui->addSlider("DIR_ZORI", -180, 180, dir.getOrientationEuler().z, w, h);
-    
 
     gui->addWidgetDown(new ofxUILabel("Directional Diffuse/Specular Color", OFX_UI_FONT_SMALL));
     c = dir.getDiffuseColor();
-    gui->addSlider("DDR", 0, 255, c.r, h, vertH);
+    dirDiffSlider.push_back(gui->addSlider("DDR", 0, 255, c.r, h, vertH));
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    gui->addSlider("DDG", 0, 255, c.g, h, vertH);
-    gui->addSlider("DDB", 0, 255, c.b, h, vertH);
-    
+    dirDiffSlider.push_back(gui->addSlider("DDG", 0, 255, c.g, h, vertH));
+    dirDiffSlider.push_back(gui->addSlider("DDB", 0, 255, c.b, h, vertH));
+    gui->addSlider("DDW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
+
     gui->addSpacer(2, vertH+10);
     c = dir.getSpecularColor();
     dirspecslider.push_back(gui->addSlider("DSR", 0, 255, c.r, h, vertH));
     dirspecslider.push_back(gui->addSlider("DSG", 0, 255, c.g, h, vertH));
     dirspecslider.push_back(gui->addSlider("DSB", 0, 255, c.b, h, vertH));
 //    dirspecslider.push_back(gui->addSlider("DSA", 0, 255, c.a, h, vertH));
-    gui->addSpacer(2, vertH+10);
+//    gui->addSpacer(2, vertH+10);
     float ival = c.r == c.b && c.r == c.g ? c.r : 0.0;
     gui->addSlider("DSW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
@@ -663,11 +696,12 @@ testApp::setGUI()
     gui->addWidgetRight(new ofxUIToggle("Point Source", showPointSource, 10, 15));
     gui->addWidgetDown(new ofxUILabel("Point Diffuse/Specular Color", OFX_UI_FONT_SMALL));
     c = point.getDiffuseColor();
-    gui->addSlider("PDR", 0, 255, c.r, h, vertH);
+    pointDiffSlider.push_back(gui->addSlider("PDR", 0, 255, c.r, h, vertH));
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    gui->addSlider("PDG", 0, 255, c.g, h, vertH);
-    gui->addSlider("PDB", 0, 255, c.b, h, vertH);
+    pointDiffSlider.push_back(gui->addSlider("PDG", 0, 255, c.g, h, vertH));
+    pointDiffSlider.push_back(gui->addSlider("PDB", 0, 255, c.b, h, vertH));
 //    gui->addSlider("PDA", 0, 255, c.a, h, vertH);
+    gui->addSlider("PDW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     
     gui->addSpacer(2, vertH+10);
     c = point.getSpecularColor();
@@ -675,7 +709,7 @@ testApp::setGUI()
     pointspecslider.push_back(gui->addSlider("PSG", 0, 255, c.g, h, vertH));
     pointspecslider.push_back(gui->addSlider("PSB", 0, 255, c.b, h, vertH));
 //    pointspecslider.push_back(gui->addSlider("PSA", 0, 255, c.a, h, vertH));
-    gui->addSpacer(2, vertH+10);
+//    gui->addSpacer(2, vertH+10);
     gui->addSlider("PSW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
@@ -691,7 +725,7 @@ testApp::setGUI()
     ambslider.push_back(gui->addSlider("AG", 0, 255.0, c.g, h, vertH));
     ambslider.push_back(gui->addSlider("AB", 0, 255.0, c.b, h, vertH));
 //    ambslider.push_back(gui->addSlider("AA", 0, 255, c.a, h, vertH));
-    gui->addSpacer(2, vertH+10);
+//    gui->addSpacer(2, vertH+10);
     gui->addSlider("AW", 0, 255.0, c.r, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
