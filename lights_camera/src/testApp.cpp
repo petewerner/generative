@@ -33,6 +33,8 @@ bool showDirSource;
 bool showSpotSource;
 bool showPointSource;
 
+bool wModActive;
+int curKey;
 bool doReset;
 
 vector<ofxUISlider *> ambslider;
@@ -42,6 +44,9 @@ vector<ofxUISlider *> dirspecslider;
 vector<ofxUISlider *> dirDiffSlider;
 vector<ofxUISlider *> pointspecslider;
 vector<ofxUISlider *> pointDiffSlider;
+vector<ofxUISlider *> matDiffSlider;
+vector<ofxUISlider *> matSpecSlider;
+vector<ofxUISlider *> matEmSlider;
 
 
 //--------------------------------------------------------------
@@ -58,6 +63,7 @@ void testApp::setup(){
     doReset = guiAlloc = false;
     ofSetSphereResolution(100);
     reset();
+    wModActive = false;
 }
 
 void testApp::reset()
@@ -481,9 +487,17 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = material.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        
+        if (wModActive) {
+            c.g = c.b = c.r;
+            for (int i = 0; i < matDiffSlider.size(); i++)
+                matDiffSlider.at(i)->setValue(slider->getScaledValue());
+        }
+        
         material.setDiffuseColor(c);
         material.setAmbientColor(c);
 
+        
     } else if (name == "MDG") {
         ofColor c = material.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
@@ -508,7 +522,16 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = material.getEmissiveColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        
+        if (wModActive) {
+            c.g = c.b = c.r;
+            for (int i = 0; i < matEmSlider.size(); i++)
+                matEmSlider.at(i)->setValue(slider->getScaledValue());
+        }
+        
         material.setEmissiveColor(c);
+        
+        
     } else if (name == "MEG") {
         ofColor c = material.getEmissiveColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
@@ -530,7 +553,15 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = material.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        
+        if (wModActive) {
+            c.g = c.b = c.r;
+            for (int i = 0; i < matSpecSlider.size(); i++)
+                matSpecSlider.at(i)->setValue(slider->getScaledValue());
+        }
+        
         material.setSpecularColor(c);
+        
     } else if (name == "MSG") {
         ofColor c = material.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
@@ -556,6 +587,7 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
         amb.setAmbientColor(c);
+        
     } else if (name == "AG") {
         ofColor c = amb.getAmbientColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
@@ -615,6 +647,9 @@ testApp::setGUI()
         dirDiffSlider.clear();
         pointspecslider.clear();
         pointDiffSlider.clear();
+        matDiffSlider.clear();
+        matSpecSlider.clear();
+        matEmSlider.clear();
         
         delete gui;
     }
@@ -737,25 +772,25 @@ testApp::setGUI()
     gui->addWidgetDown(new ofxUILabel("Material Diffuse/Emissive/Specular Color", OFX_UI_FONT_SMALL));
     
     c = material.getDiffuseColor();
-    gui->addSlider("MDR", 0, 255, c.r, h, vertH);
+    matDiffSlider.push_back(gui->addSlider("MDR", 0, 255, c.r, h, vertH));
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    gui->addSlider("MDG", 0, 255, c.g, h, vertH);
-    gui->addSlider("MDB", 0, 255, c.b, h, vertH);
+    matDiffSlider.push_back(gui->addSlider("MDG", 0, 255, c.g, h, vertH));
+    matDiffSlider.push_back(gui->addSlider("MDB", 0, 255, c.b, h, vertH));
 //    gui->addSlider("MDA", 0, 255, c.a, h, vertH);
     
     gui->addSpacer(2, vertH+10);
     c = material.getEmissiveColor();
-    gui->addSlider("MER", 0, 255, c.r, h, vertH);
+    matEmSlider.push_back(gui->addSlider("MER", 0, 255, c.r, h, vertH));
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    gui->addSlider("MEG", 0, 255, c.g, h, vertH);
-    gui->addSlider("MEB", 0, 255, c.b, h, vertH);
+    matEmSlider.push_back(gui->addSlider("MEG", 0, 255, c.g, h, vertH));
+    matEmSlider.push_back(gui->addSlider("MEB", 0, 255, c.b, h, vertH));
 //    gui->addSlider("MDA", 0, 255, c.a, h, vertH);
     
     gui->addSpacer(2, vertH+10);
     c = material.getSpecularColor();
-    gui->addSlider("MSR", 0, 255, c.r, h, vertH);
-    gui->addSlider("MSG", 0, 255, c.g, h, vertH);
-    gui->addSlider("MSB", 0, 255, c.b, h, vertH);
+    matSpecSlider.push_back(gui->addSlider("MSR", 0, 255, c.r, h, vertH));
+    matSpecSlider.push_back(gui->addSlider("MSG", 0, 255, c.g, h, vertH));
+    matSpecSlider.push_back(gui->addSlider("MSB", 0, 255, c.b, h, vertH));
 //    gui->addSlider("MSA", 0, 255, c.a, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
@@ -779,9 +814,13 @@ testApp::setGUI()
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
+
     switch (key) {
         case 'm':
             gui->toggleVisible();
+            break;
+        case ' ':
+            wModActive = true;
             break;
         default:
             break;
@@ -790,7 +829,8 @@ void testApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+    if (key == ' ')
+        wModActive = false;
 }
 
 //--------------------------------------------------------------
@@ -805,10 +845,11 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
+
     if (gui->isHit(x, y)) {
         cam.disableMouseInput();
     }
-}
+}  
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
