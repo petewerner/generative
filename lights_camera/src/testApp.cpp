@@ -92,8 +92,8 @@ void testApp::reset()
 
     material.setSpecularColor(ofColor(255, 255, 255, 255));
     material.setEmissiveColor(ofColor(0, 0, 0, 255));
-    material.setDiffuseColor(ofColor(200, 200, 200, 255));
-    material.setAmbientColor(ofColor(200, 200, 200, 255));
+    material.setDiffuseColor(ofColor(255, 255, 255, 255));
+    material.setAmbientColor(ofColor(255, 255, 255, 255));
     
     cull = true;
     useSpot = true;
