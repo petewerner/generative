@@ -10,7 +10,7 @@
  * Directional light defaults to blue light with red specular light.
  * Abmient light defaults to weak grey.
  *
- * use the W slider on specular color to adjust black <-> white
+ * hold down space when changing a color to adjust black <-> white
  * use the 'X Source' toggle to draw the light source
  *
  * You can also adjust the material properties, shine and the various colours.
@@ -20,6 +20,10 @@
  * right click + drag to zoom
  *
  * This app depends on ofxUI and in turn ofXmlSettings
+ *
+ * TODO: 
+ * alpha vals if someone wants them
+ * also diffusion if i can fit it in somewhere
  */
 
 float radius;
