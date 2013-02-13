@@ -16,6 +16,8 @@ attractor_field is an interactive/kinect enabled dejong attractor:
 
 https://vimeo.com/57775915
 
+lights_camera is an example of basic opengl lights
+
 Any comments or suggestions, please let me know!
 
 
