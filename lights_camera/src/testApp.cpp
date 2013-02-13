@@ -210,6 +210,17 @@ void testApp::draw(){
         glDisable(GL_CULL_FACE);
 }
 
+void
+testApp::setWSlider(vector<ofxUISlider *> sliders, ofColor &c, float v)
+{
+    if (wModActive) {
+        c.r = c.b = c.g = v;
+        for (int i = 0; i < sliders.size(); i++)
+            sliders.at(i)->setValue(v);
+        
+    }
+}
+
 void testApp::guiEvent(ofxUIEventArgs &e)
 {
 	string name = e.widget->getName();
@@ -262,60 +273,50 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = spot.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        setWSlider(spotDiffSlider, c, slider->getScaledValue());
         spot.setDiffuseColor(c);
     } else if (name == "SDG") {
         ofColor c = spot.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(spotDiffSlider, c, slider->getScaledValue());
         spot.setDiffuseColor(c);
     } else if (name == "SDB") {
         ofColor c = spot.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(spotDiffSlider, c, slider->getScaledValue());
         spot.setDiffuseColor(c);
     } else if (name == "SDA") {
         ofColor c = spot.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         spot.setDiffuseColor(c);
-    } else if (name == "SDW") {
-        ofColor c = spot.getDiffuseColor();
-        ofxUISlider *slider = (ofxUISlider *)e.widget;
-        c.r = c.g = c.b = c.a = slider->getScaledValue();
-        spot.setDiffuseColor(c);
-        
-        for (int i = 0; i < spotDiffSlider.size(); i++)
-            spotDiffSlider.at(i)->setValue(slider->getScaledValue());
         
         /* spot specular colour */
     } else if (name == "SSR") {
         ofColor c = spot.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        setWSlider(spotspecslider, c, slider->getScaledValue());
         spot.setSpecularColor(c);
     } else if (name == "SSG") {
         ofColor c = spot.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(spotspecslider, c, slider->getScaledValue());
         spot.setSpecularColor(c);
     } else if (name == "SSB") {
         ofColor c = spot.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(spotspecslider, c, slider->getScaledValue());
         spot.setSpecularColor(c);
     } else if (name == "SSA") {
         ofColor c = spot.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         spot.setSpecularColor(c);
-    } else if (name == "SSW") {
-        ofColor c = spot.getSpecularColor();
-        ofxUISlider *slider = (ofxUISlider *)e.widget;
-        c.r = c.g = c.b = c.a = slider->getScaledValue();
-        spot.setSpecularColor(c);
-        
-        for (int i = 0; i < spotspecslider.size(); i++)
-            spotspecslider.at(i)->setValue(slider->getScaledValue());
         
     /* directional light parms */
     } else if (name == "Dir Source") {
@@ -339,60 +340,50 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = dir.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        setWSlider(dirDiffSlider, c, slider->getScaledValue());
         dir.setDiffuseColor(c);
     } else if (name == "DDG") {
         ofColor c = dir.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(dirDiffSlider, c, slider->getScaledValue());
         dir.setDiffuseColor(c);
     } else if (name == "DDB") {
         ofColor c = dir.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(dirDiffSlider, c, slider->getScaledValue());
         dir.setDiffuseColor(c);
     } else if (name == "DDA") {
         ofColor c = dir.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         dir.setDiffuseColor(c);
-    } else if (name == "DDW") {
-        ofColor c = dir.getDiffuseColor();
-        ofxUISlider *slider = (ofxUISlider *)e.widget;
-        c.r = c.g = c.b = c.a = slider->getScaledValue();
-        dir.setDiffuseColor(c);
-        
-        for (int i = 0; i < dirDiffSlider.size(); i++)
-            dirDiffSlider.at(i)->setValue(slider->getScaledValue());
         
     /* directional specular colour */
     } else if (name == "DSR") {
         ofColor c = dir.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        setWSlider(dirspecslider, c, slider->getScaledValue());
         dir.setSpecularColor(c);
     } else if (name == "DSG") {
         ofColor c = dir.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(dirspecslider, c, slider->getScaledValue());
         dir.setSpecularColor(c);
     } else if (name == "DSB") {
         ofColor c = dir.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(dirspecslider, c, slider->getScaledValue());
         dir.setSpecularColor(c);
     } else if (name == "DSA") {
         ofColor c = dir.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         dir.setSpecularColor(c);
-    } else if (name == "DSW") {
-        ofColor c = dir.getSpecularColor();
-        ofxUISlider *slider = (ofxUISlider *)e.widget;
-        c.r = c.g = c.b = c.a = slider->getScaledValue();
-        dir.setSpecularColor(c);
-        
-        for (int i = 0; i < dirspecslider.size(); i++)
-            dirspecslider.at(i)->setValue(slider->getScaledValue());
         
     /* point diffuse colour */
     } else if (name == "Point Source") {
@@ -403,60 +394,50 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = point.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        setWSlider(pointDiffSlider, c, slider->getScaledValue());
         point.setDiffuseColor(c);
     } else if (name == "PDG") {
         ofColor c = point.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(pointDiffSlider, c, slider->getScaledValue());
         point.setDiffuseColor(c);
     } else if (name == "PDB") {
         ofColor c = point.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(pointDiffSlider, c, slider->getScaledValue());
         point.setDiffuseColor(c);
     } else if (name == "PDA") {
         ofColor c = point.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         point.setDiffuseColor(c);
-    } else if (name == "PDW") {
-        ofColor c = point.getDiffuseColor();
-        ofxUISlider *slider = (ofxUISlider *)e.widget;
-        c.r = c.g = c.b = c.a = slider->getScaledValue();
-        point.setDiffuseColor(c);
         
-        for (int i = 0; i < pointDiffSlider.size(); i++)
-            pointDiffSlider.at(i)->setValue(slider->getScaledValue());
-        
-        /* point specular colour */
+    /* point specular colour */
     } else if (name == "PSR") {
         ofColor c = point.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        setWSlider(pointspecslider, c, slider->getScaledValue());
         point.setSpecularColor(c);
     } else if (name == "PSG") {
         ofColor c = point.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(pointspecslider, c, slider->getScaledValue());
         point.setSpecularColor(c);
     } else if (name == "PSB") {
         ofColor c = point.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(pointspecslider, c, slider->getScaledValue());
         point.setSpecularColor(c);
     } else if (name == "PSA") {
         ofColor c = point.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         point.setSpecularColor(c);
-    } else if (name == "PSW") {
-        ofColor c = point.getSpecularColor();
-        ofxUISlider *slider = (ofxUISlider *)e.widget;
-        c.r = c.g = c.b = c.a = slider->getScaledValue();
-        point.setSpecularColor(c);
-        
-        for (int i = 0; i < pointspecslider.size(); i++)
-            pointspecslider.at(i)->setValue(slider->getScaledValue());
         
     /* point auto move */
     } else if (name == "Auto Move") {
@@ -487,27 +468,21 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = material.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
-        
-        if (wModActive) {
-            c.g = c.b = c.r;
-            for (int i = 0; i < matDiffSlider.size(); i++)
-                matDiffSlider.at(i)->setValue(slider->getScaledValue());
-        }
-        
+        setWSlider(matDiffSlider, c, slider->getScaledValue());
         material.setDiffuseColor(c);
         material.setAmbientColor(c);
-
-        
     } else if (name == "MDG") {
         ofColor c = material.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(matDiffSlider, c, slider->getScaledValue());
         material.setDiffuseColor(c);
         material.setAmbientColor(c);
     } else if (name == "MDB") {
         ofColor c = material.getDiffuseColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(matDiffSlider, c, slider->getScaledValue());
         material.setDiffuseColor(c);
         material.setAmbientColor(c);
     } else if (name == "MDA") {
@@ -522,25 +497,19 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = material.getEmissiveColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
-        
-        if (wModActive) {
-            c.g = c.b = c.r;
-            for (int i = 0; i < matEmSlider.size(); i++)
-                matEmSlider.at(i)->setValue(slider->getScaledValue());
-        }
-        
+        setWSlider(matEmSlider, c, slider->getScaledValue());
         material.setEmissiveColor(c);
-        
-        
     } else if (name == "MEG") {
         ofColor c = material.getEmissiveColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(matEmSlider, c, slider->getScaledValue());
         material.setEmissiveColor(c);
     } else if (name == "MEB") {
         ofColor c = material.getEmissiveColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(matEmSlider, c, slider->getScaledValue());
         material.setEmissiveColor(c);
     } else if (name == "MEA") {
         ofColor c = material.getEmissiveColor();
@@ -553,24 +522,20 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = material.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
-        
-        if (wModActive) {
-            c.g = c.b = c.r;
-            for (int i = 0; i < matSpecSlider.size(); i++)
-                matSpecSlider.at(i)->setValue(slider->getScaledValue());
-        }
-        
+        setWSlider(matSpecSlider, c, slider->getScaledValue());
         material.setSpecularColor(c);
         
     } else if (name == "MSG") {
         ofColor c = material.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(matSpecSlider, c, slider->getScaledValue());
         material.setSpecularColor(c);
     } else if (name == "MSB") {
         ofColor c = material.getSpecularColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(matSpecSlider, c, slider->getScaledValue());
         material.setSpecularColor(c);
     } else if (name == "MSA") {
         ofColor c = material.getSpecularColor();
@@ -586,31 +551,26 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofColor c = amb.getAmbientColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.r = slider->getScaledValue();
+        setWSlider(ambslider, c, slider->getScaledValue());
         amb.setAmbientColor(c);
         
     } else if (name == "AG") {
         ofColor c = amb.getAmbientColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.g = slider->getScaledValue();
+        setWSlider(ambslider, c, slider->getScaledValue());
         amb.setAmbientColor(c);
     } else if (name == "AB") {
         ofColor c = amb.getAmbientColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.b = slider->getScaledValue();
+        setWSlider(ambslider, c, slider->getScaledValue());
         amb.setAmbientColor(c);
     } else if (name == "AA") {
         ofColor c = amb.getAmbientColor();
         ofxUISlider *slider = (ofxUISlider *)e.widget;
         c.a = slider->getScaledValue();
         amb.setAmbientColor(c);
-    } else if (name == "AW") {
-        ofColor c = amb.getAmbientColor();
-        ofxUISlider *slider = (ofxUISlider *)e.widget;
-        c.r = c.g = c.b = c.a = slider->getScaledValue();
-        amb.setAmbientColor(c);
-        
-        for (int i = 0; i < ambslider.size(); i++)
-            ambslider.at(i)->setValue(slider->getScaledValue());
         
     } else if (name == "RESET") {
         doReset = true;
@@ -684,7 +644,6 @@ testApp::setGUI()
     spotDiffSlider.push_back(gui->addSlider("SDG", 0, 255, c.g, h, vertH));
     spotDiffSlider.push_back(gui->addSlider("SDB", 0, 255, c.b, h, vertH));
 //    gui->addSlider("SDA", 0, 255, c.a, h, vertH);
-    gui->addSlider("SDW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     
     gui->addSpacer(2, vertH+10);
 
@@ -693,8 +652,6 @@ testApp::setGUI()
     spotspecslider.push_back(gui->addSlider("SSG", 0, 255, c.g, h, vertH));
     spotspecslider.push_back(gui->addSlider("SSB", 0, 255, c.b, h, vertH));
 //    spotspecslider.push_back(gui->addSlider("SSA", 0, 255, c.a, h, vertH));
-//    gui->addSpacer(2, vertH+10);
-    gui->addSlider("SSW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
     gui->addSpacer(w, 2);
@@ -713,7 +670,6 @@ testApp::setGUI()
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
     dirDiffSlider.push_back(gui->addSlider("DDG", 0, 255, c.g, h, vertH));
     dirDiffSlider.push_back(gui->addSlider("DDB", 0, 255, c.b, h, vertH));
-    gui->addSlider("DDW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
 
     gui->addSpacer(2, vertH+10);
     c = dir.getSpecularColor();
@@ -721,9 +677,6 @@ testApp::setGUI()
     dirspecslider.push_back(gui->addSlider("DSG", 0, 255, c.g, h, vertH));
     dirspecslider.push_back(gui->addSlider("DSB", 0, 255, c.b, h, vertH));
 //    dirspecslider.push_back(gui->addSlider("DSA", 0, 255, c.a, h, vertH));
-//    gui->addSpacer(2, vertH+10);
-    float ival = c.r == c.b && c.r == c.g ? c.r : 0.0;
-    gui->addSlider("DSW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
     gui->addSpacer(w, 2);
@@ -736,7 +689,6 @@ testApp::setGUI()
     pointDiffSlider.push_back(gui->addSlider("PDG", 0, 255, c.g, h, vertH));
     pointDiffSlider.push_back(gui->addSlider("PDB", 0, 255, c.b, h, vertH));
 //    gui->addSlider("PDA", 0, 255, c.a, h, vertH);
-    gui->addSlider("PDW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     
     gui->addSpacer(2, vertH+10);
     c = point.getSpecularColor();
@@ -744,8 +696,6 @@ testApp::setGUI()
     pointspecslider.push_back(gui->addSlider("PSG", 0, 255, c.g, h, vertH));
     pointspecslider.push_back(gui->addSlider("PSB", 0, 255, c.b, h, vertH));
 //    pointspecslider.push_back(gui->addSlider("PSA", 0, 255, c.a, h, vertH));
-//    gui->addSpacer(2, vertH+10);
-    gui->addSlider("PSW", 0, 255, c.r == c.b && c.r == c.g ? c.r : 0.0, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
     gui->addToggle("Auto Move", autoRotatePoint);
@@ -760,8 +710,6 @@ testApp::setGUI()
     ambslider.push_back(gui->addSlider("AG", 0, 255.0, c.g, h, vertH));
     ambslider.push_back(gui->addSlider("AB", 0, 255.0, c.b, h, vertH));
 //    ambslider.push_back(gui->addSlider("AA", 0, 255, c.a, h, vertH));
-//    gui->addSpacer(2, vertH+10);
-    gui->addSlider("AW", 0, 255.0, c.r, h, vertH);
     gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
     
     //Material Control

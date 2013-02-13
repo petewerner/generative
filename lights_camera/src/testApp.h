@@ -25,6 +25,7 @@ class testApp : public ofBaseApp{
     void reset();
     
     void setLightOri(ofLight &light, ofVec3f rot);
+    void setWSlider(vector<ofxUISlider *>sliders, ofColor &c, float v);
     
     ofxUICanvas *gui;
     ofEasyCam cam;
