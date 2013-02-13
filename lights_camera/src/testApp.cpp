@@ -47,6 +47,7 @@ void testApp::setup(){
     ofSetFrameRate(30);
     ofEnableAlphaBlending();
     ofEnableSmoothing();
+    ofSetGlobalAmbientColor(ofColor(0, 0, 0));
     ofSetSmoothLighting(true);
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
