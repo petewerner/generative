@@ -140,9 +140,6 @@ void testApp::draw(){
     ofSetColor(0, 0, 255);
     ofLine(0, 0, 0, 0, 0, 200);
 
-    ofEnableLighting();
-    material.begin();
-    
     if (useAmb)
         amb.enable();
     else
@@ -162,9 +159,17 @@ void testApp::draw(){
         point.enable();
     else
         point.disable();
-    
-    //white sphere
-    ofSetColor(255);
+
+    //enabling lights above will call ofEnableLighting() which will
+    //enable GL_COLOR_MATERIAL. This which means calls to ofSetColor()
+    //would change material properties, which we dont want here. We
+    //want it controlled by the sliders, so we turn it off then turn
+    //on our material
+    glDisable(GL_COLOR_MATERIAL);
+    material.begin();    
+
+    //we could enable GL_COLOR_MATERIAL set the color here
+//    ofSetColor(255);
     ofSphere(0,0,0, radius);
 
     amb.disable();
