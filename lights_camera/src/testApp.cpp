@@ -8,7 +8,7 @@
  * Spot light defaults to a red light with a blue specular highlight
  * Point light is similar to a spot light, defaults to green light with white spec highlight
  * Directional light defaults to blue light with red specular light.
- * Abmient light defaults to weak grey.
+ * Ambient light defaults to weak grey.
  *
  * hold down space when changing a color to adjust black <-> white
  * use the 'X Source' toggle to draw the light source
@@ -706,7 +706,7 @@ testApp::setGUI()
     
     gui->addSpacer(w, 2);
     gui->addWidgetDown(new ofxUILabel("Ambient Light Control", OFX_UI_FONT_MEDIUM));
-    gui->addWidgetDown(new ofxUILabel("Ambient Light Color (w for white)", OFX_UI_FONT_SMALL));
+    gui->addWidgetDown(new ofxUILabel("Ambient Light Color", OFX_UI_FONT_SMALL));
 
     c = amb.getAmbientColor();
     ambslider.push_back(gui->addSlider("AR", 0, 255.0, c.r, h, vertH));
