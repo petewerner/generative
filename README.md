@@ -20,4 +20,9 @@ lights_camera is an example of basic opengl lights
 
 Any comments or suggestions, please let me know!
 
+voronoi uses ofxVoronoi to build a tessellation, then fills each region
+with the average color of the pixels that fall within it. 
+
+http://vimeo.com/61998900
+
 
