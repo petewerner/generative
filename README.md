@@ -3,6 +3,15 @@ generative
 
 Generative stuff, possibly viewable here: https://vimeo.com/dizzypete/videos
 
+cheap_tricks
+------------
+
+A kinect/audio recative interactive thingy
+
+More info here: http://petewerner.blogspot.com/2014/01/cheap-tricks-interactive-dance-floor.html
+
+http://vimeo.com/83001696
+
 audio_sphere
 ------------
 
@@ -10,6 +19,13 @@ audio_sphere is an audio reactive sphere. mostly developed as a learning
 exercise looking at using fbos & shaders. You can see a clip of it here:
 
 https://vimeo.com/48338942
+
+particles
+---------
+
+Simple CPU based particle system
+
+http://vimeo.com/46149488
 
 parallel_reduction 
 ------------------
@@ -49,12 +65,4 @@ of a forum discussion so has at least 3 different people touching it, but
 hopefully should be clear enough.
 
 
-cheap_tricks
-------------
-
-A kinect/audio recative interactive thingy
-
-More info here: http://petewerner.blogspot.com/2014/01/cheap-tricks-interactive-dance-floor.html
-
-http://vimeo.com/83001696
 
