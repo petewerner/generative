@@ -49,3 +49,12 @@ of a forum discussion so has at least 3 different people touching it, but
 hopefully should be clear enough.
 
 
+cheap_tricks
+------------
+
+A kinect/audio recative interactive thingy
+
+More info here: http://petewerner.blogspot.com/2014/01/cheap-tricks-interactive-dance-floor.html
+
+http://vimeo.com/83001696
+
