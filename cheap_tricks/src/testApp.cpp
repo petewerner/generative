@@ -5,6 +5,7 @@
  * Uses kinect if available or falls back to device camera
  * Use far threshold for camera thresholding & space to learn the background
  *
+ * more info: http://petewerner.blogspot.com/2014/01/cheap-tricks-interactive-dance-floor.html
  *
  * Requires the following addons
  * ofxTriangle - https://github.com/obviousjim/ofxTriangle
@@ -34,15 +35,15 @@ void testApp::setup(){
     
     guiPath = "guisettings.xml";
     
-//    if (ofxKinect::numAvailableDevices() >= 1) {
+    if (ofxKinect::numAvailableDevices() >= 1) {
         cout << "using kinect" << endl;
         openKinect();
         useKinect = true;
-//    } else {
-//        cout << "using camera" << endl;
-//        openCamera();
-//        useKinect = false;
-//    }
+    } else {
+        cout << "using camera" << endl;
+        openCamera();
+        useKinect = false;
+    }
     
 	colorImg.allocate(inputWidth, inputHeight);
 	grayImage.allocate(inputWidth, inputHeight);
