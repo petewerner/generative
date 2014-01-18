@@ -1,0 +1,17 @@
+<Settings>
+	<audioThreshold>0.5</audioThreshold>
+	<audioPeakDecay>0.95</audioPeakDecay>
+	<audioMaxDecay>1</audioMaxDecay>
+	<audioMirror>0</audioMirror>
+	<nearThreshold>255</nearThreshold>
+	<farThreshold>160</farThreshold>
+	<blobMin>5000</blobMin>
+<Settings/>
+<mirrorInput>0</mirrorInput>
+<triangleMax>15</triangleMax>
+<glowExtra>1</glowExtra>
+<lineWidth>10.0</lineWidth>
+<jitterSize>0.5</jitterSize>
+<FPS>0</FPS>
+	<GPUBlur>1</GPUBlur>
+</Settings>

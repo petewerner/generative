@@ -1,0 +1,7 @@
+ofxGui
+ofxKinect
+ofxOpenCv
+ofxXmlSettings
+ofxFboBlur
+ofxFFT
+ofxSoundStream
