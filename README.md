@@ -56,6 +56,10 @@ with the average color of the pixels that fall within it.
 
 http://vimeo.com/61998900
 
+noise1
+------
+
+messing around with fractional sums of Perlin noise
 
 ARK
 ---
