@@ -1,0 +1,28 @@
+<Controls>
+	<noise_size>144</noise_size>
+	<show_noise>0</show_noise>
+	<show_vectors>0</show_vectors>
+	<plane_size>26</plane_size>
+	<show_plane>0</show_plane>
+    <ang_noise>0</ang_noise>
+    <signed_noise>1</signed_noise>
+    <plane_z_disp>0</plane_z_disp>
+    <axes>0</axes>
+    <show_grad>0</show_grad>
+    <show_curl>0</show_curl>
+    <show_parts>1</show_parts>
+	<part_count>100000</part_count>
+    <speed>1.425</speed>
+    <advect_mode>3</advect_mode>
+	<fart>curl</fart>
+    <mode>curl</mode>
+    <vec_scale>87</vec_scale>
+    <noise_scale>4.57</noise_scale>
+    <part_alpha>255</part_alpha>
+    <vec_length>45</vec_length>
+    <y_vel>1</y_vel>
+    <dt>0</dt>
+    <blend>0</blend>
+    <advect_amount>1.075</advect_amount>
+<Controls/>
+</Controls>

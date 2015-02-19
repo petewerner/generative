@@ -1,0 +1,14 @@
+<ctls>
+	<octaves>3</octaves>
+	<alpha>4.5635</alpha>
+	<beta>2.944</beta>
+	<x_amt>0</x_amt>
+	<y_amt>-1.22</y_amt>
+	<curl_amt>1</curl_amt>
+	<advect_dt>0.99</advect_dt>
+    <signed>0</signed>
+    <debug_view>0</debug_view>
+    <draw_alpha>0.345</draw_alpha>
+    <noise_view>1</noise_view>
+<ctls/>
+</ctls>
