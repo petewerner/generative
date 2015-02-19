@@ -3,6 +3,17 @@ generative
 
 Generative stuff, possibly viewable here: https://vimeo.com/dizzypete/videos
 
+curlgrid
+--------
+
+A simple demo app showing some details about curl noise
+
+gpu curl 2D/3D
+--------------
+
+More demos apps, this time using the GPU for particle advection and curl generation
+
+
 cheap_tricks
 ------------
 
